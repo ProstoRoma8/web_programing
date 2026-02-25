@@ -1,0 +1,267 @@
+/* початок місця для хедера */
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;   
+    align-items: center; /* Вирівнюємо елементи по вертикалі */
+    gap: 15px; /* Відстань між елементами */
+}
+
+/* Налаштовуємо кожен елемент списку (статус) */
+nav ul li {
+    width: 75px; /* Фіксована ширина робить всі смуги однаковими */
+    padding-right: 15px; /* Відступ від тексту/смуги до роздільника */
+    border-right: 2px solid rgba(69, 193, 235, 0.4); /* Це створює роздільник "|" */
+}
+
+/* Прибираємо роздільник у останнього елемента (Crew), щоб він не висів у повітрі */
+nav ul li:last-child {
+    border-right: none;
+    padding-right: 0;
+}
+
+/* Ефект при наведенні на елементи навігації (статуси корабля) */
+nav ul li:hover {
+    transform: translateY(-2px);
+    transition: transform 0.3s ease;
+    cursor: default;
+    opacity: 0.9;
+}
+
+/* кінець місця для основного меню */
+
+
+
+.stat-header {
+    display: flex;
+    justify-content: center; /* Центруємо текст над смужкою */
+    font-size: 14px;
+    margin-bottom: 6px; /* Трохи більше простору між текстом і смугою */
+}
+
+.stat-value {
+    text-align: center;
+    font-size: 13px;
+    margin-top: 5px; /* Відступ вниз від смуги */
+    opacity: 0.8; /* Робимо цифри трохи тьмянішими за основний текст, щоб не відволікали */
+}
+
+.crew-value {
+    text-align: center;
+    font-size: 14px; /* Робимо текст трохи більшим */
+    font-weight: bold;
+    margin-top: 6px; 
+}
+
+.bar {
+    height: 6px;
+    background: rgba(255,255,255,0.15);
+    border-radius: 4px;
+    overflow: hidden;
+    width: 100%; /* Смуга займає всю доступну ширину (75px) */
+}
+
+.fill {
+    height: 100%;
+    background: rgb(69, 193, 235);
+}
+/*кінець місця для хедера */
+
+/* початок основного меню */
+
+
+/* Ліва панель (Меню) */
+
+
+.action-menu h2 {
+    margin-top: 0;
+    text-align: center;
+}
+
+/* Стиль для кнопок дій */
+.action-btn {
+    background-color: rgb(8, 39, 71);
+    color: rgb(69, 193, 235);
+    border: 1px solid rgb(69, 193, 235);
+    padding: 15px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s; /* Плавна анімація при наведенні */
+    font-family: inherit;
+}
+
+.action-btn:hover {
+    background-color: rgb(69, 193, 235);
+    color: #111;
+    box-shadow: 0 0 10px rgba(69, 193, 235, 0.5); /* Ефект світіння */
+}
+
+/* Стилі для спадних списків (щоб виглядали як кнопки) */
+.action-select {
+    background-color: rgb(8, 39, 71);
+    color: rgb(69, 193, 235);
+    border: 1px solid rgb(69, 193, 235);
+    padding: 15px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+    font-family: inherit;
+    width: 100%; /* Щоб список займав усю ширину блоку */
+    appearance: none; /* Прибирає стандартну стрілочку браузера для більш sci-fi вигляду */
+    text-align: center;
+}
+
+.action-select:hover:not(:disabled), 
+.action-select:focus:not(:disabled) {
+    background-color: rgb(69, 193, 235);
+    color: #111;
+    box-shadow: 0 0 10px rgba(69, 193, 235, 0.5); /* Ефект світіння */
+    outline: none;
+}
+
+/* Стиль для заблокованого стану (коли ще не обрана експедиція) */
+.action-select:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    border-color: rgba(69, 193, 235, 0.3);
+    color: rgba(69, 193, 235, 0.5);
+}
+
+/* Стиль для самих опцій при відкритті списку */
+.action-select option {
+    background-color: rgb(8, 39, 71);
+    color: rgb(69, 193, 235);
+    text-align: left;
+}
+
+/* Права панель (Корабель) */
+
+.ship-preview h2 {
+    margin-top: 0;
+    text-align: center;
+}
+
+/* Заглушка для картинки корабля */
+.ship-image-placeholder {
+    flex-grow: 1;
+    border: 2px dashed rgba(69, 193, 235, 0.5);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 250px;
+}
+
+/* --- МЕНЮ ЕКСПЕДИЦІЙ --- */
+
+
+.galaxy-map h2 {
+    margin-top: 0;
+    text-align: center;
+}
+
+/* Місце для зображення карти */
+.map-img {
+    flex-grow: 1;
+    border: 2px dashed rgba(69, 193, 235, 0.5);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 250px;
+    overflow: hidden; /* Щоб майбутня картинка не вилазила за краї */
+}
+
+/* Додатковий стиль, щоб згенерована мапа гарно вписалась, коли ти її додаси */
+.map-img img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+/* Права панель (Кнопки місій) */
+
+
+.map-action-menu h2 {
+    margin-top: 0;
+    text-align: center;
+}
+
+/* --- history --- */
+/* --- ІСТОРІЯ ЕКСПЕДИЦІЙ --- */
+
+
+.history-section h2 {
+    margin-top: 0;
+    text-align: center;
+    border-bottom: 1px solid rgba(69, 193, 235, 0.3); /* Лінія під заголовком */
+    padding-bottom: 10px;
+}
+
+/* Контейнер для записів із прокруткою */
+.history-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-height: 250px; /* Обмежуємо висоту, щоб блок не розтягувався безкінечно */
+    overflow-y: auto; /* Додаємо вертикальний скрол */
+    padding-right: 5px;
+}
+
+/* Базовий стиль одного запису в історії */
+.history-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.4); /* Темніший фон для контрасту */
+    padding: 12px 15px;
+    border-left: 4px solid gray; /* Дефолтна кольорова мітка зліва */
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.history-info {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.history-info strong {
+    color: #fff;
+    letter-spacing: 0.5px;
+}
+
+/* --- Кольорові статуси результатів --- */
+/* Зелений для успіху */
+.history-item.success {
+    border-left-color: #4CAF50; 
+}
+.history-item.success .history-rewards {
+    color: #4CAF50;
+    font-weight: bold;
+}
+
+/* Червоний для провалу */
+.history-item.failure {
+    border-left-color: #F44336; 
+}
+.history-item.failure .history-rewards {
+    color: #F44336;
+    font-weight: bold;
+}
+
+/* --- Кастомізація скролбару (sci-fi стиль) --- */
+.history-list::-webkit-scrollbar {
+    width: 6px;
+}
+.history-list::-webkit-scrollbar-track {
+    background: rgba(8, 39, 71, 0.5);
+    border-radius: 4px;
+}
+.history-list::-webkit-scrollbar-thumb {
+    background: rgb(69, 193, 235);
+    border-radius: 4px;
+}

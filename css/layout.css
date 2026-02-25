@@ -1,0 +1,47 @@
+header {
+    background-color: rgb(8, 39, 71);
+    color:rgb(69, 193, 235);
+    padding: 20px;
+
+    display: flex;              /* робимо flex-контейнер */
+    justify-content: space-between; /* розносить h1 вліво, nav вправо */
+    align-items: center;        /* вирівнює по вертикалі */
+}
+
+/* поєднання двох змінних через повторення параметрів */
+.game-container, .expeditions-menu {
+    display: flex;
+    padding: 20px;
+    gap: 20px;
+    
+}
+
+.game-container {
+    min-height: 60vh;
+}
+
+.action-menu, .ship-preview, .galaxy-map, .map-action-menu, .history-section {
+    flex: 1; /* Займає 50% ширини */
+    display: flex;
+    flex-direction: column;
+    background: rgba(8, 39, 71, 0.3); /* Напівпрозорий фон для атмосфери */
+    padding: 20px;
+    border-radius: 8px;
+}
+
+
+
+.action-menu, .map-action-menu, .history-section {
+    gap: 15px; /* Відстань між кнопками */
+}
+.history-section {
+    margin: 20px; /* Відступ від інших блоків */
+}
+
+
+footer{
+    text-align: center;
+    padding: 10px;
+    background-color: #333;
+    color: white;
+}

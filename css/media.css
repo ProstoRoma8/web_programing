@@ -1,0 +1,45 @@
+
+/* --- АДАПТИВНІСТЬ ДЛЯ ТЕЛЕФОНІВ ТА ПЛАНШЕТІВ --- */
+/* 1. Медіа-запит для ПЛАНШЕТІВ (менше 992px) */
+@media (max-width: 992px) {
+    .game-container,
+    .expeditions-menu {
+        flex-direction: column; /* Блоки стають один під одним */
+    }
+    
+    nav ul {
+        flex-wrap: wrap; 
+        justify-content: center;
+    }
+}
+
+/* 2. Медіа-запит для МОБІЛЬНИХ ТЕЛЕФОНІВ (менше 576px) */
+@media (max-width: 576px) {
+    header {
+        flex-direction: column;
+        text-align: center;
+        gap: 15px;
+    }
+
+    nav ul {
+        flex-direction: column; /* СТРОГО ВЕРТИКАЛЬНА навігація (вимога завдання) */
+        width: 100%;
+        gap: 20px;
+    }
+
+    nav ul li {
+        border-right: none;
+        width: 100%; /* Розтягуємо на всю ширину для мобільних */
+        padding: 0;
+    }
+
+    .action-menu, .map-action-menu {
+        padding: 15px;
+    }
+    
+    .action-btn, .action-select {
+        padding: 12px;
+        font-size: 14px; /* Менший текст кнопок на телефонах */
+    }
+}
+

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang = "en">
+    <head>
+        <meta charset = "UTF-8" />
+        <meta name = "viewport" content = "width=device-width, initial-scale = 1.0" />
+        <title>Сиулятор Космічної Експедиції</title>
+            <link rel="stylesheet" href="css/base.css" />
+            <link rel="stylesheet" href="css/layout.css" />
+            <link rel="stylesheet" href="css/components.css" />
+            <link rel="stylesheet" href="css/media.css" />
+    </head>
+    <body>
+        <header>
+            <h1>Cosmic Expeditions</h1>
+            <nav>
+                <ul>
+                    <li>    <!-- first child (HP)-->
+                        <div class = "stat-header">
+                            <span> Здоров'я </span>
+                        </div>
+                        <div class="bar">
+                            <div class = "fill"></div>
+                        </div>
+                        <div class = "stat-value">  8500 ОЗ </div>
+                    </li>
+                    <li>    <!-- nth-child(2)-->
+                        <div class = "stat-header">
+                            <span> Енергія </span>
+                        </div>
+                        <div class="bar">
+                            <div class = "fill"></div>
+                        </div>
+                        <div class = "stat-value">1000%</div>
+                    </li>
+                    <li>    <!-- nth-child(3)-->
+                        <div class = "stat-header">
+                            <span> Щити </span>
+                        </div>
+                        <div class="bar">
+                            <div class = "fill"></div>
+                        </div>
+                        <div class="stat-value">85%</div>
+                    </li>
+                    <li>    <!-- nth-child(4)-->
+                        <div class = "stat-header">
+                            <span> Пальне </span>
+                        </div>
+                        <div class="bar">
+                            <div class = "fill"></div>
+                        </div>
+                        <div class="stat-value">1000%</div>
+                    </li>
+                    <li>
+                        <div class="stat-header">
+                            <span> Екіпаж </span>
+                        </div>
+                        <div class="crew-value">3 / 6</div>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+        
+       <main>
+            <div class="game-container">  
+                <div class="ship-preview">
+                    <h2> [ Ім'я корабля ] </h2>
+                        <div class="ship-image-placeholder">
+                            <span>[ Місце для зображення корабля ]</span>
+                        </div>
+                </div>
+                <div class="action-menu">
+                    <h2>Командний центр</h2>
+                    <button type="button" class="action-btn">Сканувати сектор</button>
+                    <button type="button" class="action-btn">Зібрати ресурси</button>
+                    <button type="button" class="action-btn">Ремонт систем</button>
+                    <button type="button" class="action-btn">Гіперстрибок</button>
+                </div>
+            </div>
+
+            <div class = "expeditions-menu">
+                <div class = "galaxy-map">
+                    <h2> Мапа </h2>
+                    <div class = "map-img">
+                        <span> 
+                            <img src = "img/Gemini_Generated_Image_po40i5po40i5po40.png">    
+                        </span>
+                    </div>
+                </div>
+                <div class="map-action-menu">
+                    <h2>Місії та Експедиції</h2>
+                    <select id="expedition-select" class="action-select">
+                        <option value="" disabled selected>Вибір експедиції</option>
+                    </select>
+                    <select id="mission-select" class="action-select" disabled>
+                        <option value="" disabled selected>Вибір місії</option>
+                        </select>
+                </div>
+            </div>
+            <div class="history-section">
+                <h2>Історія експедицій</h2>
+                <button id="toggle-history-btn" class="action-btn" style="margin-bottom: 10px;">Приховати історію</button>
+                <div class="history-list" id="history-list">
+                </div>
+                <button id="clear-history-btn" class="action-btn" style="background-color: #F44336; margin-bottom: 10px;">Очистити бортовий журнал</button>
+            </div>
+</main>
+
+         <footer>
+            <div class="footer-contacts">
+                <p><strong>Контакти командного центру:</strong></p>
+                <p>Адреса: Сектор 4, Космічна станція "Омега"</p>
+                <p>Email: roman.shymkiv.oi.2025</p>
+            </div>
+            <div class="footer-copy">
+                <p>&copy; 2026 WebDev </p>
+            </div>
+        </footer>
+        <script src="js/script.js"></script>
+        <script src="js/status.js"></script>
+        <script src="js/interactive.js"></script>
+        <script src="js/history.js"></script>
+    </body>
+</html>
