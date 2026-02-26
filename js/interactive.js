@@ -1,12 +1,8 @@
-// ==========================================
-// ЗАВДАННЯ 2. Кроки 1-2: Перемикач видимості (Toggle) з if-else
-// ==========================================
 const toggleHistoryBtn = document.getElementById('toggle-history-btn');
 const historyList = document.getElementById('history-list');
 
 if (toggleHistoryBtn && historyList) {
     toggleHistoryBtn.addEventListener('click', function() {
-        // Перевіряємо поточний стан (if-else)
         if (historyList.style.display === 'none') {
             historyList.style.display = 'flex'; // Показуємо
             toggleHistoryBtn.textContent = 'Приховати історію';
@@ -17,10 +13,6 @@ if (toggleHistoryBtn && historyList) {
     });
 }
 
-// ==========================================
-// ЗАВДАННЯ 2. Кроки 3-4: Цикли та події наведення/кліку
-// ==========================================
-// Вибираємо всі кнопки тільки в Командному центрі
 const commandButtons = document.querySelectorAll('.action-menu .action-btn');
 
 // Змінні для Гіперстрибка (поки тестові)
@@ -31,28 +23,24 @@ const jumpCostFuel = 30;   // 30%
 // Використовуємо цикл for для прив'язки подій до кожної кнопки
 for (let i = 0; i < commandButtons.length; i++) {
     let btn = commandButtons[i];
-    let originalText = btn.textContent; // Запам'ятовуємо оригінальний текст кнопки
+    let originalText = btn.textContent; 
 
-    // --- ПОДІЯ: Наведення миші (Hover) ---
     btn.addEventListener('mouseenter', function() {
-        btn.style.borderColor = '#FFC107'; // Робимо рамку жовтою
+        btn.style.borderColor = '#FFC107'; 
         
         // Логіка if-else для зміни тексту при наведенні
-        if (originalText === 'Гіперстрибок') {
+        if (originalText === 'Почати місію') {
             btn.innerHTML = `${originalText} <br><span style="font-size: 12px; color: #FFC107;">Витрати: -${jumpCostEnergy}% Енергії, -${jumpCostFuel}% Пального</span>`;
         } else if (originalText === 'Ремонт систем') {
             btn.innerHTML = `${originalText} <br><span style="font-size: 12px; color: #FFC107;">Відновить 2-5% ОЗ</span>`;
         }
     });
 
-    // --- ПОДІЯ: Відведення миші ---
     btn.addEventListener('mouseleave', function() {
         btn.style.borderColor = 'rgb(69, 193, 235)'; // Повертаємо стандартний колір
         btn.innerHTML = originalText; // Повертаємо оригінальний текст
     });
 
-
-    // --- ПОДІЯ: Клік по кнопці ремонту ---
     btn.addEventListener('click', function() {
         
         if (originalText === 'Ремонт систем') {
@@ -60,129 +48,96 @@ for (let i = 0; i < commandButtons.length; i++) {
             let hpElement = document.querySelector('nav ul li:first-child .stat-value');
             if (hpElement) {
                 let currentHP = parseInt(hpElement.textContent);
-
-                // 1. ПЕРЕВІРКА: Якщо здоров'я ВЖЕ максимальне - зупиняємо ремонт
-                if (currentHP >= 10000) {
-                    alert("Системи в ідеальному стані! Ремонт не потрібен.");
-                    return; // Команда return зупиняє виконання коду нижче
-                }
-
-                // Випадкове число від 2 до 5
+                    if (currentHP >= 10000) {
+                        alert("Системи в ідеальному стані! Ремонт не потрібен.");
+                        return;
+                    }
                 let randomPercent = Math.floor(Math.random() * (5 - 2 + 1)) + 2; 
-                
-                // Рахуємо ТЕОРЕТИЧНИЙ бонус
                 let hpBonus = Math.floor(currentHP * (randomPercent / 100));
                 let newHP = currentHP + hpBonus;
-                
-                // Змінна для РЕАЛЬНОГО бонусу (скільки насправді додалося)
                 let actualBonus = hpBonus;
-
-                // 2. ОБМЕЖЕННЯ: Якщо перевалили за 10000
                 if (newHP > 10000) {
-                    // Вираховуємо, скільки ОЗ реально влізло до повної шкали
                     actualBonus = 10000 - currentHP; 
                     newHP = 10000;
                 }
-                
-                // Оновлюємо текст в HTML
                 hpElement.textContent = newHP + ' ОЗ';
-                
                 // Оновлюємо смужки (викликаємо функцію з status.js)
                 if (typeof updateStatuses === 'function') {
                     updateStatuses();
                     // Зберігаємо змінене здоров'я в пам'ять
                 if (typeof saveStats === 'function') saveStats();
                 }
-                
-                // 3. ФІДБЕК: Показуємо правильні повідомлення
                 if (newHP === 10000) {
-                    // Якщо після ремонту здоров'я стало рівно 10000
                     alert(`Ремонт успішний! Відновлено ${actualBonus} ОЗ. Системи повністю відновлено до максимуму!`);
                 } else {
-                    // Звичайний ремонт
                     alert(`Ремонт успішний! Відновлено ${actualBonus} ОЗ (${randomPercent}%).`);
                 }
             }
         }
-        
-        else if (originalText === 'Гіперстрибок') {
-            // 1. Спочатку перевіряємо, чи взагалі прокладено маршрут
+        else if (originalText === 'Почати місію') {
             if (!isMissionSelected) {
                 alert("Помилка навігації! Спочатку оберіть Експедицію та Місію.");
-                return; // Зупиняємо код, далі не йдемо
+                return; 
             }
-            // 2. Використовуємо правильні селектори nth-child()
             let energyElement = document.querySelector('nav ul li:nth-child(2) .stat-value');
             let fuelElement = document.querySelector('nav ul li:nth-child(4) .stat-value');
-
             if (energyElement && fuelElement) {
-                // Витягуємо чисті числа (наприклад, 85 і 50)
                 let currentEnergy = parseInt(energyElement.textContent);
                 let currentFuel = parseInt(fuelElement.textContent);
-
-                // 3. Перевіряємо, чи вистачає ресурсів на стрибок 
-                // (jumpCostEnergy = 20, jumpCostFuel = 30 - ці змінні ми оголосили раніше)
-                if (currentEnergy < jumpCostEnergy) {
-                    alert("Критична помилка! Недостатньо енергії для стрибка.");
-                    return; // Зупиняємо стрибок
+                if (currentEnergy < jumpCostEnergy || currentFuel < jumpCostFuel) {
+                    alert("Критична помилка! Недостатньо ресурсів для місії.");
+                    return;
                 }
-                
-                if (currentFuel < jumpCostFuel) {
-                    alert("Критична помилка! Недостатньо пального для стрибка.");
-                    return; // Зупиняємо стрибок
-                }
-
-                // 4. Якщо перевірки пройдені - віднімаємо ресурси
-                let newEnergy = currentEnergy - jumpCostEnergy;
-                let newFuel = currentFuel - jumpCostFuel;
-
-                // Записуємо нові значення назад в HTML (додаємо знак %)
-                energyElement.textContent = newEnergy + '%';
-                fuelElement.textContent = newFuel + '%';
-
-                // Оновлюємо смужки (викликаємо функцію з status.js)
-                // Вони автоматично пожовтіють чи почервоніють, якщо ресурсів стало мало!
-                if (typeof updateStatuses === 'function') {
-                    updateStatuses();
-                    // Зберігаємо зменшені показники після стрибка
-                if (typeof saveStats === 'function') saveStats();
-                }
-
-                alert(`Гіперстрибок ініційовано! Витрачено: Енергія -${jumpCostEnergy}%, Пальне -${jumpCostFuel}%.`);
-                
-                // --- ГЕНЕРАЦІЯ РЕЗУЛЬТАТУ МІСІЇ ---
-                let selectedExp = document.getElementById('expedition-select').value;
-                let selectedMis = document.getElementById('mission-select').value;
-                
-                let isMissionSuccess = Math.random() > 0.3; 
-                let missionStatusText = isMissionSuccess ? "Успішно виконано" : "Провалено (Аварія)";
-                let missionRewardsText = "";
-
-                // ВПЛИВ НА КОРАБЕЛЬ:
-                if (isMissionSuccess) {
-                    missionRewardsText = "+1000 Ресурсів, +10% Енергії";
-                    // Додаємо енергію як нагороду
-                    let currentEnergy = parseInt(energyElement.textContent);
-                    energyElement.textContent = Math.min(100, currentEnergy + 10) + '%';
-                } else {
-                    missionRewardsText = "-1500 ОЗ";
-                    // Віднімаємо здоров'я через аварію
-                    let hpElement = document.querySelector('nav ul li:first-child .stat-value');
-                    let currentHP = parseInt(hpElement.textContent);
-                    hpElement.textContent = Math.max(0, currentHP - 1500) + ' ОЗ';
-                }
-
-                // Оновлюємо смужки та ЗБЕРІГАЄМО новий стан
+                energyElement.textContent = (currentEnergy - jumpCostEnergy) + '%';
+                fuelElement.textContent = (currentFuel - jumpCostFuel) + '%';
                 if (typeof updateStatuses === 'function') updateStatuses();
                 if (typeof saveStats === 'function') saveStats();
+                let timerDisplay = document.getElementById('mission-timer-display');
+                let timeLeftSpan = document.getElementById('time-left');
+                let flightTime = Math.floor(Math.random() * (10 - 5 + 1)) + 5;
+                btn.disabled = true;
+                btn.style.opacity = '0.5';
+                btn.style.cursor = 'not-allowed';
+                btn.textContent = 'Місія в процесі...';
+                timerDisplay.style.display = 'block';
+                timeLeftSpan.textContent = flightTime;
+                let countdown = setInterval(function() {
+                    flightTime--;
+                    timeLeftSpan.textContent = flightTime;
+                    if (flightTime <= 0) {  // КОЛИ ЧАС ВИЙШОВ:
+                        clearInterval(countdown); // Зупиняємо таймер
+                        btn.disabled = false; // Повертаємо кнопку в нормальний стан
+                        btn.style.opacity = '1';
+                        btn.style.cursor = 'pointer';
+                        btn.textContent = originalText;
+                        timerDisplay.style.display = 'none'; // Ховаємо таймер
+                        let selectedExp = document.getElementById('expedition-select').value;
+                        let selectedMis = document.getElementById('mission-select').value;
+                        let isMissionSuccess = Math.random() > 0.3; 
+                        let missionStatusText = isMissionSuccess ? "Успішно виконано" : "Провалено (Аварія)";
+                        let missionRewardsText = "";
+                        if (isMissionSuccess) {
+                            missionRewardsText = "+1000 Ресурсів, +10% Енергії";
+                            let curEnergy = parseInt(energyElement.textContent);
+                            energyElement.textContent = Math.min(100, curEnergy + 10) + '%';
+                        } else {
+                            missionRewardsText = "-1500 ОЗ";
+                            let hpElement = document.querySelector('nav ul li:first-child .stat-value');
+                            let curHP = parseInt(hpElement.textContent);
+                            hpElement.textContent = Math.max(0, curHP - 1500) + ' ОЗ';
+                        }
+                        if (typeof updateStatuses === 'function') updateStatuses();
+                        if (typeof saveStats === 'function') saveStats();
+                        if (typeof addHistoryEntry === 'function') {
+                            addHistoryEntry(`${selectedExp}: ${selectedMis}`, missionStatusText, missionRewardsText, isMissionSuccess);
+                        }
+                        isMissionSelected = false;
+                        document.getElementById('mission-select').selectedIndex = 0;
+                        document.getElementById('mission-select').disabled = true;
 
-                // Викликаємо функцію з history.js
-                if (typeof addHistoryEntry === 'function') {
-                    addHistoryEntry(`${selectedExp}: ${selectedMis}`, missionStatusText, missionRewardsText, isMissionSuccess);
-                }
-                
-                isMissionSelected = false;
-                document.getElementById('mission-select').selectedIndex = 0;
+                        alert("Місію завершено! Результати додано у бортовий журнал.");
+                    }
+                }, 1000);
             }
         }
     });
@@ -195,7 +150,7 @@ for (let i = 0; i < commandButtons.length; i++) {
 const expSelect = document.getElementById('expedition-select');
 const misSelect = document.getElementById('mission-select');
 
-// 1. Наші "бази даних" (Масиви з усіма можливими варіантами)
+// Масиви з усіма можливими варіантами
 const expeditionsPool = [
     "Сектор Альфа", "Туманність Андромеди", "Система Центавра", 
     "Пояс Оріона", "Квазар X-12", "Закинута Станція 'Ехо'", 
