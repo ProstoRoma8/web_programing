@@ -63,11 +63,15 @@
        <main>
             <div class="game-container">  
                 <div class="ship-preview">
-                    <h2> [ Ім'я корабля ] </h2>
-                        <div class="ship-image-placeholder">
-                            <span>[ Місце для зображення корабля ]</span>
-                        </div>
+                    <input type="text" id="ship-name-input" class="ship-name-input" placeholder="Введіть назву корабля..." value="Зоряний Мандрівник">
+            
+                <div class="ship-image-placeholder" id="ship-image-container" title="Натисніть, щоб обрати зображення">
+                    <span id="ship-image-text">[ Натисніть, щоб обрати креслення корабля ]</span>
+                    <img id="ship-img-preview" src="" alt="Мій корабель" style="display: none; max-width: 100%; height: auto; border-radius: 8px;">
                 </div>
+            
+            <input type="file" id="ship-image-upload" accept="image/*" style="display: none;">
+        </div>
                 <div class="action-menu">
                     <h2>Командний центр</h2>
                     <button type="button" class="action-btn">Сканувати сектор</button>

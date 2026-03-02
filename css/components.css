@@ -104,3 +104,33 @@ nav ul li:hover {
     font-weight: bold; 
     margin-top: -5px;
 }
+
+/* --- НАЛАШТУВАННЯ КОРАБЛЯ --- */
+.ship-name-input {
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid rgba(69, 193, 235, 0.5);
+    color: rgb(69, 193, 235);
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+    width: 100%;
+    margin-bottom: 15px;
+    font-family: inherit;
+    outline: none;
+    padding-bottom: 5px;
+    transition: border-color 0.3s ease;
+}
+
+.ship-name-input:focus {
+    border-bottom-color: #FFC107; /* Жовтий колір при введенні тексту */
+}
+
+#ship-image-container {
+    cursor: pointer; /* Робить курсор у вигляді "руки", підказуючи, що сюди можна клікати */
+    transition: transform 0.2s ease;
+}
+
+#ship-image-container:hover {
+    transform: scale(1.02); /* Трохи збільшується при наведенні */
+}

@@ -113,17 +113,32 @@ if (clearHistoryBtn) {
         
         // Якщо гравець натиснув "ОК" (true)
         if (isSure) {
-            // Варіант 1: Повністю видалити ключ (тоді при перезавантаженні з'являться 2 дефолтні записи)
-            // localStorage.removeItem(HISTORY_KEY); 
-            
-            // Варіант 2: Записати порожній масив (тоді історія буде абсолютно чистою)
+            // 1. Очищаємо історію та статуси систем (те, що вже було)
             localStorage.setItem(HISTORY_KEY, JSON.stringify([]));
-            localStorage.removeItem('cosmic_expeditions_stats'); // ДОДАЙ ЦЕЙ РЯДОК!
+            localStorage.removeItem('cosmic_expeditions_stats'); 
             
-            // Викликаємо нашу функцію рендеру, щоб вона очистила екран
+            // 2. НОВЕ: Видаляємо дані корабля з пам'яті
+            localStorage.removeItem('cosmic_ship_name');
+            localStorage.removeItem('cosmic_ship_image');
+            
+            // 3. НОВЕ: Скидаємо візуальний інтерфейс корабля
+            let nameInput = document.getElementById('ship-name-input');
+            let imgPreview = document.getElementById('ship-img-preview');
+            let textPlaceholder = document.getElementById('ship-image-text');
+            
+            if (nameInput) nameInput.value = "Зоряний Мандрівник"; // Дефолтна назва
+            if (imgPreview) {
+                imgPreview.style.display = 'none'; // Ховаємо картинку
+                imgPreview.src = '';               // Очищаємо джерело
+            }
+            if (textPlaceholder) textPlaceholder.style.display = 'block'; // Повертаємо сірий квадрат
+            
+            // 4. Відновлюємо інтерфейс решти гри
             renderHistory();
+            if (typeof loadStats === 'function') loadStats();
+            if (typeof updateStatuses === 'function') updateStatuses();
             
-            alert("Бортовий журнал успішно очищено!");
+            alert("Систему повністю скинуто! Бортовий журнал очищено, корабель повернуто до заводського стану.");
         }
     });
 }
