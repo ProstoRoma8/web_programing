@@ -79,6 +79,7 @@ nav ul li:hover {
     max-width: 100%;
     height: auto;
     border-radius: 8px;
+    align-items: center;
 }
 
 .ship-image-text {

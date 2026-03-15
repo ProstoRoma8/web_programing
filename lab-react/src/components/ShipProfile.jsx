@@ -63,8 +63,7 @@ export default function ShipProfile() {
                     <img 
                         id="ship-img-preview" 
                         src={shipImage} 
-                        alt="Мій корабель" 
-                        style={{ display: 'block', maxWidth: '100%', height: 'auto', borderRadius: '8px' }} 
+                        alt="Мій корабель"  
                     />
                 )}
             </div>
@@ -73,7 +72,6 @@ export default function ShipProfile() {
                 type="file" 
                 id="ship-image-upload" 
                 accept="image/*" 
-                style={{ display: 'none' }} 
                 onChange={handleImageUpload}
             />
         </div>
