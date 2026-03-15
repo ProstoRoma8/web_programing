@@ -74,6 +74,21 @@ nav ul li:hover {
     min-height: 250px;
 }
 
+.ship-img-preview {
+    display: none;
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
+.ship-image-text {
+    align-items: center;
+}
+
+.ship-image-upload{
+display: none;
+}
+
 .map-img { overflow: hidden; }
 .map-img img {
     max-width: 100%; /* Картинка ніколи не буде ширшою за свій контейнер */
@@ -96,6 +111,8 @@ nav ul li:hover {
 .history-list::-webkit-scrollbar { width: 6px; }
 .history-list::-webkit-scrollbar-track { background: rgba(8, 39, 71, 0.5); border-radius: 4px; }
 .history-list::-webkit-scrollbar-thumb { background: rgb(69, 193, 235); border-radius: 4px; }
+
+.clear-history-btn{ background-color: #F44336; margin-bottom: 10px }
 
 .timer {
     display: none; 
